@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -52,7 +53,20 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
+    migrationDir: path.resolve(dirname, 'migrations'),
   }),
+  // אחסון מדיה ב-Vercel Blob בפרודקשן (הדיסק ב-Vercel אינו קבוע).
+  // מופעל אוטומטית כשקיים BLOB_READ_WRITE_TOKEN — בפיתוח מקומי נשמר לדיסק כרגיל.
+  plugins: [
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            collections: { media: true },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
+  ],
   sharp,
   // עברית כברירת מחדל + תשתית להרחבה לשפות נוספות (i18n)
   localization: {
