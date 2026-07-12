@@ -1,0 +1,183 @@
+@import 'tailwindcss';
+
+/*
+  טוקני העיצוב של הדרן — מבוססים על מערכת העיצוב (design-reference/NOTES.md):
+  קנבס קרם, טיפוגרפיה ענקית ב-Almoni Tzar, פינות מעוגלות מלאות לאלמנטים אינטראקטיביים,
+  וגרדיאנט המותג כתום→אדום ל-CTA.
+*/
+@theme {
+  --color-canvas: #f9f7f3;
+  --color-bone: #f3f0e8;
+  --color-bone-deep: #eee9dd;
+  --color-card: #ffffff;
+  --color-dark: #202020;
+  --color-deep: #000000;
+
+  --color-ink: #202020;
+  --color-body: #3a3a3a;
+  --color-charcoal: #575757;
+  --color-mute: #646464;
+  --color-ash: #8d8d8d;
+  --color-on-dark: #fcfcfc;
+
+  --color-accent: #ea2804;
+  --color-accent-deep: #c01f00;
+  --color-glow: #ff6a3d;
+  --color-blush: #f4a8a0;
+  --color-brand-orange: #f19413;
+  --color-brand-orange-deep: #e0820a;
+  --color-brand-green: #9bc329;
+  --color-brand-green-dark: #8aae24;
+  --color-brand-green-deeper: #6e8c1c;
+
+  --font-display: var(--font-almoni-tzar), 'Noto Sans Hebrew', sans-serif;
+  --font-sans: var(--font-almoni-neue), 'Heebo', sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
+  --radius-nav: 18px;
+  --radius-card: 14px;
+  --radius-card-lg: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* אנימציות חתימה מתוך העיצוב */
+@keyframes hadranShieldSweep {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+@keyframes hadranFloat {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-16px) rotate(-4deg); }
+}
+@keyframes hadranPulse {
+  0% { transform: scale(0.45); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+@keyframes hadranSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes hadranBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes hadranStampIn {
+  0% { transform: scaleX(0); }
+  60% { transform: scaleX(1.04); }
+  100% { transform: scaleX(1); }
+}
+
+/* כפתור CTA בגרדיאנט המותג */
+.btn-brand {
+  background: linear-gradient(135deg, #f19413 0%, #ea2804 90%);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 600;
+  display: inline-block;
+  transition: filter 0.15s ease;
+}
+.btn-brand:hover {
+  filter: brightness(0.92);
+}
+
+.link-pill {
+  border-radius: 9999px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.link-pill:hover {
+  background: var(--color-bone);
+  color: var(--color-ink);
+}
+
+/* עזרי נגישות */
+.skip-link {
+  position: absolute;
+  inset-inline-start: -9999px;
+  z-index: 100;
+}
+.skip-link:focus {
+  inset-inline-start: 16px;
+  top: 16px;
+  background: #202020;
+  color: #fcfcfc;
+  padding: 12px 24px;
+  border-radius: 9999px;
+}
+
+/* תוכן עשיר (Lexical) */
+.rich-text {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-body);
+}
+.rich-text h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  color: var(--color-ink);
+  margin: 2.2em 0 0.6em;
+}
+.rich-text h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.15;
+  color: var(--color-ink);
+  margin: 1.8em 0 0.5em;
+}
+.rich-text h4 {
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--color-ink);
+  margin: 1.5em 0 0.4em;
+}
+.rich-text p {
+  margin: 0 0 1em;
+}
+.rich-text ul,
+.rich-text ol {
+  margin: 0 0 1.2em;
+  padding-inline-start: 1.4em;
+}
+.rich-text ul { list-style: disc; }
+.rich-text ol { list-style: decimal; }
+.rich-text li { margin-bottom: 0.4em; }
+.rich-text a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.rich-text a:hover { color: var(--color-accent-deep); }
+.rich-text blockquote {
+  border-inline-start: 3px solid var(--color-brand-orange);
+  padding-inline-start: 20px;
+  margin: 1.5em 0;
+  color: var(--color-charcoal);
+}
+.rich-text strong { color: var(--color-ink); }

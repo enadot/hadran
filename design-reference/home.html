@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<title>הדרן — טכנולוגיה בהכשר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Hebrew:wdth,wght@62.5..100,400..900&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Almoni Neue'; src: url('uploads/almoni-neue-regular-aaa.woff') format('woff'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Almoni Neue'; src: url('uploads/almoni-neue-medium-aaa.woff') format('woff'); font-weight: 500 600; font-display: swap; }
+  @font-face { font-family: 'Almoni Neue'; src: url('uploads/almoni-neue-bold-aaa.woff') format('woff'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Almoni Tzar'; src: url('uploads/almoni-tzar-regular-aaa.woff') format('woff'); font-weight: 400 600; font-display: swap; }
+  @font-face { font-family: 'Almoni Tzar'; src: url('uploads/almoni-tzar-bold-aaa.woff') format('woff'); font-weight: 700 900; font-display: swap; }
+  
+  html, body { margin: 0; padding: 0; background: #f9f7f3; }
+  body { font-family: 'Almoni Neue', 'Heebo', sans-serif; color: #202020; }
+  a { color: #ea2804; text-decoration: none; }
+  a:hover { color: #c01f00; }
+  ::selection { background: #ea2804; color: #fff; }
+  @keyframes hadranShieldSweep {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+  @keyframes hadranFloat {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50% { transform: translateY(-16px) rotate(-4deg); }
+  }
+  @keyframes hadranPulse {
+    0% { transform: scale(0.45); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: scale(1.15); opacity: 0; }
+  }
+  @keyframes hadranSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes hadranBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  @keyframes hadranStampIn {
+    0% { transform: scaleX(0); }
+    60% { transform: scaleX(1.04); }
+    100% { transform: scaleX(1); }
+  }
+</style>
+</helmet>
+
+<div dir="rtl" style="min-height:100vh; background:#f9f7f3; color:#202020; font-family:'Almoni Neue','Heebo',sans-serif;">
+
+  <!-- NAV -->
+  <div data-screen-label="ניווט עליון" style="position:sticky; top:12px; z-index:50; padding:0 20px;" onMouseLeave="{{ closeMenu }}">
+    <nav style="max-width:1280px; margin:0 auto; background:#ffffff; border:1px solid rgba(32,32,32,0.08); border-radius:18px; box-shadow:0 10px 30px rgba(32,32,32,0.08); height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 14px 0 20px; position:relative;">
+      <div style="display:flex; align-items:center; gap:36px;">
+        <a href="Hadran Home.dc.html" style="display:flex; align-items:center; padding:0 8px;">
+          <img src="uploads/hadran-logo-color.svg" alt="הדרן" style="height:30px; display:block;">
+        </a>
+        <div style="display:flex; align-items:center; gap:4px; font-size:14px; font-weight:600;">
+          <a href="#protection" onMouseEnter="{{ openMenu }}" style="color:#202020; padding:10px 14px; border-radius:9999px; display:flex; align-items:center; gap:6px;" style-hover="background:#f3f0e8; color:#202020;">מערכת ההגנה<span style="font-size:10px; color:#8d8d8d;">▾</span></a>
+          <a href="Hadran Product.dc.html" onMouseEnter="{{ openMenu }}" style="color:#575757; padding:10px 14px; border-radius:9999px; display:flex; align-items:center; gap:6px;" style-hover="background:#f3f0e8; color:#202020;">מכשירים נתמכים<span style="font-size:10px; color:#8d8d8d;">▾</span></a>
+          <a href="Hadran Service.dc.html" onMouseEnter="{{ openMenu }}" style="color:#575757; padding:10px 14px; border-radius:9999px; display:flex; align-items:center; gap:6px;" style-hover="background:#f3f0e8; color:#202020;">חנויות מכירה ושירות<span style="font-size:10px; color:#8d8d8d;">▾</span></a>
+          <a href="#kashrut" onMouseEnter="{{ closeMenuSoon }}" style="color:#575757; padding:10px 14px; border-radius:9999px;" style-hover="background:#f3f0e8; color:#202020;">כשרות</a>
+          <a href="Hadran Magazine.dc.html" onMouseEnter="{{ closeMenuSoon }}" style="color:#575757; padding:10px 14px; border-radius:9999px;" style-hover="background:#f3f0e8; color:#202020;">הדרן עלך</a>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="Hadran Service.dc.html" style="background:linear-gradient(135deg, #F19413 0%, #ea2804 90%); color:#ffffff; font-size:14px; font-weight:600; padding:12px 26px; border-radius:9999px; display:inline-block;" style-hover="background:linear-gradient(135deg, #e0820a 0%, #c01f00 90%); color:#ffffff;">איתור חנות</a>
+      </div>
+
+      <!-- MEGA MENU -->
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; top:76px; right:0; left:0; background:#ffffff; border:1px solid rgba(32,32,32,0.08); border-radius:18px; box-shadow:0 24px 60px rgba(32,32,32,0.14); padding:32px; display:grid; grid-template-columns:1fr 1fr 1fr 1.1fr; gap:40px;">
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <span style="font-size:12px; font-weight:700; color:#8d8d8d; letter-spacing:0.5px; border-bottom:1px solid rgba(32,32,32,0.08); padding-bottom:10px;">מערכת ההגנה</span>
+            <a href="#protection" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">איך ההגנה עובדת</a>
+            <a href="#protection" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">צריבה בליבת המכשיר</a>
+            <a href="Hadran Product.dc.html" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">מה פתוח ומה חסום</a>
+            <a href="#kashrut" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">פיקוח ועדת הרבנים</a>
+            <a href="#difference" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">הדרן מול סינון חיצוני</a>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <span style="font-size:12px; font-weight:700; color:#8d8d8d; letter-spacing:0.5px; border-bottom:1px solid rgba(32,32,32,0.08); padding-bottom:10px;">מכשירים נתמכים</span>
+            <a href="Hadran Product.dc.html" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">Samsung Galaxy</a>
+            <a href="Hadran Product.dc.html" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">Google Pixel</a>
+            <a href="Hadran Product.dc.html" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">Xiaomi · OnePlus · Infinix</a>
+            <a href="Hadran Product.dc.html" style="color:#ea2804; font-size:14px; font-weight:700;">כל המכשירים ←</a>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <span style="font-size:12px; font-weight:700; color:#8d8d8d; letter-spacing:0.5px; border-bottom:1px solid rgba(32,32,32,0.08); padding-bottom:10px;">חנויות ושירות</span>
+            <a href="Hadran Service.dc.html" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">איתור חנות קרובה</a>
+            <a href="Hadran Service.dc.html" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">סניפי דגל ומעבדות</a>
+            <a href="Hadran Service.dc.html" style="color:#202020; font-size:14px; font-weight:600;" style-hover="color:#ea2804;">התקנה במקום</a>
+            <a href="Hadran Service.dc.html" style="color:#ea2804; font-size:14px; font-weight:700;">כל הסניפים ←</a>
+          </div>
+          <a href="#kashrut" style="background:#f3f0e8; border-radius:14px; padding:24px; display:flex; flex-direction:column; gap:12px; color:#202020;" style-hover="background:#eee9dd; color:#202020;">
+            <img src="uploads/kashrut_stamp.svg" alt="חותמת ועדת הרבנים" style="width:64px; height:auto;">
+            <span style="font-size:15px; font-weight:700;">הכשרות המוסמכת ביותר</span>
+            <span style="font-size:13px; line-height:1.5; color:#575757;">ועדת הרבנים לענייני תקשורת שע״י בד״צ בני ברק</span>
+            <span style="font-size:13px; font-weight:700; color:#ea2804;">לצפייה בתעודה ←</span>
+          </a>
+        </div>
+      </sc-if>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <header data-screen-label="הירו" style="background:radial-gradient(70% 110% at 78% -20%, rgba(244,168,160,0.55) 0%, rgba(255,106,61,0.18) 45%, rgba(249,247,243,0) 75%), #f9f7f3; padding:88px 32px 72px; overflow:hidden;">
+    <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.25fr 1fr; gap:56px; align-items:center;">
+      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:28px;">
+        <h1 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:84px; line-height:1.02; letter-spacing:-1.8px; margin:0; color:#202020;">
+          <span style="white-space:nowrap;"><span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-stretch:100%; letter-spacing:-3px; font-size:76px;">{{ counterText }}</span> משתמשים</span>
+          <br>
+          <span style="white-space:nowrap;">בחרו <span style="position:relative; display:inline-block; padding:0 12px;">
+            <span style="position:absolute; inset:6px -4px 2px -4px; background:linear-gradient(135deg, #F19413 0%, #ea2804 90%); border-radius:6px; transform-origin:right center; animation:hadranStampIn 0.7s cubic-bezier(0.2,0.8,0.2,1) 0.4s both; z-index:0;"></span>
+            <span style="position:relative; z-index:1; color:#ffffff; background:linear-gradient(105deg, #ffffff 40%, #ffd9cc 50%, #ffffff 60%); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:hadranShieldSweep 3.2s linear 1.2s infinite;">מערכת הגנה</span>
+          </span></span>
+        </h1>
+        <p style="font-size:19px; line-height:1.56; color:#3a3a3a; max-width:540px; margin:0;">היחידה עם מערכת הגנה צרובה בליבת המכשיר — לביטחון אמיתי ושקט דיגיטלי.</p>
+        <a href="Hadran Product.dc.html" style="background:linear-gradient(135deg, #F19413 0%, #ea2804 90%); color:#ffffff; font-size:17px; font-weight:600; padding:16px 36px; border-radius:9999px; display:inline-block;" style-hover="background:linear-gradient(135deg, #e0820a 0%, #c01f00 90%); color:#ffffff;">קחו אותי להדרן שלי ←</a>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; position:relative;">
+        <div style="position:absolute; width:80%; aspect-ratio:1; border-radius:9999px; background:radial-gradient(circle, rgba(255,106,61,0.35) 0%, rgba(244,168,160,0.2) 45%, rgba(249,247,243,0) 70%);"></div>
+        <img src="uploads/kashrut_stamp.svg" alt="חותמת ועדת הרבנים" style="position:absolute; left:-24px; top:8%; width:170px; height:auto; z-index:0; opacity:0.9; animation:hadranFloat 5s ease-in-out infinite;">
+        <img src="uploads/pasted-1783534036395-0.png" alt="מכשיר הדרן" style="position:relative; z-index:1; width:100%; max-width:440px; height:auto; filter:drop-shadow(0 24px 48px rgba(32,32,32,0.18));">
+      </div>
+    </div>
+  </header>
+
+  <!-- BRAND STRIP -->
+  <section data-screen-label="יצרנים" style="border-top:1px solid rgba(32,32,32,0.12); border-bottom:1px solid rgba(32,32,32,0.12); padding:40px 32px;">
+    <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:28px;">
+      <span style="font-size:15px; font-weight:600; color:#575757;">הכי הרבה מותגים, הכי הרבה הגנה</span>
+      <div style="display:flex; align-items:center; justify-content:center; gap:56px; flex-wrap:wrap;">
+        <img src="uploads/samsung.svg" alt="Samsung" style="height:18px; opacity:0.65;">
+        <img src="uploads/pixel.svg" alt="Google Pixel" style="height:22px; opacity:0.65;">
+        <img src="uploads/xiaomi.svg" alt="Xiaomi" style="height:26px; opacity:0.65;">
+        <img src="uploads/oneplus.svg" alt="OnePlus" style="height:22px; opacity:0.65;">
+        <img src="uploads/infinix.svg" alt="Infinix" style="height:18px; opacity:0.65;">
+      </div>
+    </div>
+  </section>
+
+  <!-- KASHRUT / TRUST -->
+  <section id="kashrut" data-screen-label="כשרות" style="padding:112px 32px;">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.15fr 1fr; gap:80px; align-items:center;">
+      <div style="display:flex; flex-direction:column; gap:24px;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <img src="uploads/kashrut_stamp.svg" alt="חותמת ועדת הרבנים" style="width:72px; height:auto;">
+          <span style="font-size:14px; font-weight:700; color:#ea2804;">הכשר ופיקוח</span>
+        </div>
+        <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:52px; line-height:1.02; letter-spacing:-1.2px; margin:0;">הכשרות הרשמית והמוסמכת ביותר בעולם ההגנה החרדי</h2>
+        <div style="display:flex; flex-direction:column; gap:14px; font-size:16px; line-height:1.7; color:#3a3a3a;">
+          <p style="margin:0;">חברת הדרן זוכה לחותמת הכשרות של הגוף המוסמך ביותר בציבור החרדי לפתרונות הזמן: <strong style="color:#202020;">ועדת הרבנים לענייני תקשורת שע״י בד״צ בני ברק</strong>.</p>
+          <p style="margin:0;">מערך החסימה הייחודי של הדרן פותח בהכוונתו של מרן הגאון רבי ניסים קרליץ זצוק״ל, נבדק על ידי טובי אנשי המקצוע — והוכר כמערכת שאיננה ניתנת לפריצה.</p>
+          <p style="margin:0;">בראשות ועדת הרבנים עומדים הגאון רבי שריאל רוזנברג והגאון רבי מרדכי סילמן שליט״א, כאשר הם ונציגים מוסמכים מטעמם מפקחים באופן ישיר על התכנים המותרים והנצרכים לשימוש.</p>
+          <p style="margin:0;">חברת הדרן גאה על הזכות והחובה שנפלו בחלקה להביא מוצר מסונן בקפדנות כה רבה לכלל הציבור.</p>
+          <p style="margin:0;">על כל מוצרי הדרן מוטבעת חותמת הכשרות המהודרת — המבדילה מחיקויים בשוק הטכנולוגיה שאינם בפיקוח ראוי ומוסמך.</p>
+        </div>
+        <a href="uploads/pasted-1783534398069-0.png" target="_blank" style="align-self:flex-start; background:#202020; color:#fcfcfc; font-size:15px; font-weight:600; padding:13px 28px; border-radius:9999px; display:inline-block;">לצפייה בתעודת הכשרות ←</a>
+      </div>
+      <div style="position:relative; display:flex; justify-content:center;">
+        <div style="background:#ffffff; border:1px solid rgba(32,32,32,0.12); border-radius:12px; padding:16px; transform:rotate(1.5deg); box-shadow:0 8px 24px rgba(32,32,32,0.08); max-width:380px;">
+          <img src="uploads/pasted-1783534398069-0.png" alt="תעודת הכשרות — בית דין צדק בני ברק" style="width:100%; height:auto; display:block; border-radius:6px;">
+        </div>
+        <img src="uploads/pasted-1783534423104-0.png" alt="חותמת שמור — ועדת הפיקוח" style="position:absolute; bottom:-32px; left:-8px; width:240px; height:auto; filter:drop-shadow(0 12px 24px rgba(32,32,32,0.18));">
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTECTION / DARK BAND -->
+  <section id="protection" data-screen-label="מערכת ההגנה" style="background:#202020; color:#fcfcfc; padding:120px 32px 112px; overflow:hidden; position:relative;">
+    <div style="position:absolute; top:-30%; left:50%; transform:translateX(-50%); width:900px; height:900px; border-radius:9999px; background:radial-gradient(circle, rgba(234,40,4,0.22) 0%, rgba(234,40,4,0.06) 45%, rgba(32,32,32,0) 70%); pointer-events:none;"></div>
+    <div style="max-width:1280px; margin:0 auto; position:relative; display:flex; flex-direction:column; gap:72px;">
+
+      <!-- HEADLINE -->
+      <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:24px;">
+        <span style="border:1px solid rgba(255,106,61,0.5); color:#ff6a3d; border-radius:9999px; padding:8px 20px; font-size:14px; font-weight:700;">מערכת ההגנה של הדרן · דור 4</span>
+        <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:76px; line-height:1.0; letter-spacing:-1.8px; margin:0; color:#fcfcfc;">הגנה שצרובה בליבה.<br><span style="color:#ff6a3d;">לא עוד אפליקציה.</span></h2>
+        <p style="font-size:18px; line-height:1.6; color:rgba(252,252,252,0.72); margin:0; max-width:600px;">סינון רגיל הוא תוכנה שיושבת מעל המערכת — וכל תוכנה אפשר להסיר. ההגנה של הדרן נצרבת בליבת המכשיר עצמו בתהליך התאמה מלא, לפני שהוא מגיע אליכם.</p>
+      </div>
+
+      <!-- CORE VISUAL + STATUS -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+
+        <!-- ANIMATED CORE -->
+        <div style="display:flex; align-items:center; justify-content:center; position:relative; min-height:420px;">
+          <div style="position:absolute; width:400px; height:400px; border-radius:9999px; border:1px solid rgba(252,252,252,0.10); animation:hadranPulse 3.6s ease-out infinite;"></div>
+          <div style="position:absolute; width:400px; height:400px; border-radius:9999px; border:1px solid rgba(252,252,252,0.10); animation:hadranPulse 3.6s ease-out 1.2s infinite;"></div>
+          <div style="position:absolute; width:400px; height:400px; border-radius:9999px; border:1px solid rgba(252,252,252,0.10); animation:hadranPulse 3.6s ease-out 2.4s infinite;"></div>
+          <div style="position:absolute; width:300px; height:300px; border-radius:9999px; border:1px dashed rgba(255,106,61,0.35); animation:hadranSpin 24s linear infinite;"></div>
+          <div style="position:relative; width:180px; height:180px; border-radius:9999px; background:radial-gradient(circle at 35% 30%, #2e2e2e, #000000); border:1px solid rgba(252,252,252,0.14); display:flex; align-items:center; justify-content:center; box-shadow:0 0 80px rgba(234,40,4,0.35);">
+            <div style="width:86px; height:90px; background:#ea2804; -webkit-mask-image:url('uploads/icon.svg'); mask-image:url('uploads/icon.svg'); -webkit-mask-size:contain; mask-size:contain; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center;"></div>
+          </div>
+          <span style="position:absolute; bottom:24px; font-size:13px; font-weight:600; color:rgba(252,252,252,0.5);">ליבת המכשיר · ההגנה פעילה</span>
+        </div>
+
+        <!-- STATUS CARD -->
+        <div style="background:rgba(0,0,0,0.55); border:1px solid rgba(252,252,252,0.10); backdrop-filter:blur(6px); border-radius:16px; padding:32px; display:flex; flex-direction:column; gap:4px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:16px; border-bottom:1px solid rgba(252,252,252,0.14); margin-bottom:12px;">
+            <span style="font-size:14px; font-weight:700; color:rgba(252,252,252,0.72);">מצב ההגנה במכשיר</span>
+            <span style="display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color:#8aae24;"><span style="width:8px; height:8px; border-radius:9999px; background:#8aae24; animation:hadranBlink 2s ease-in-out infinite;"></span>מוגן כעת</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(252,252,252,0.08);">
+            <span style="font-size:15px; color:#fcfcfc;">הגנה צרובה בליבת המכשיר</span>
+            <span style="background:rgba(155,195,41,0.16); color:#8aae24; border-radius:9999px; padding:4px 14px; font-size:12px; font-weight:700;">פעילה ✓</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(252,252,252,0.08);">
+            <span style="font-size:15px; color:#fcfcfc;">סינון גלישה</span>
+            <span style="background:rgba(155,195,41,0.16); color:#8aae24; border-radius:9999px; padding:4px 14px; font-size:12px; font-weight:700;">נעול ✓</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(252,252,252,0.08);">
+            <span style="font-size:15px; color:#fcfcfc;">חנות אפליקציות מבוקרת</span>
+            <span style="background:rgba(155,195,41,0.16); color:#8aae24; border-radius:9999px; padding:4px 14px; font-size:12px; font-weight:700;">מאושרת ✓</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(252,252,252,0.08);">
+            <span style="font-size:15px; color:#fcfcfc;">אפשרות הסרה או עקיפה</span>
+            <span style="background:rgba(255,106,61,0.16); color:#ff6a3d; border-radius:9999px; padding:4px 14px; font-size:12px; font-weight:700;">אין ✕</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0;">
+            <span style="font-size:15px; color:#fcfcfc;">פיקוח ועדת הרבנים</span>
+            <span style="background:rgba(155,195,41,0.16); color:#8aae24; border-radius:9999px; padding:4px 14px; font-size:12px; font-weight:700;">בתוקף ✓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- THREE PILLARS -->
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:rgba(252,252,252,0.10); border:1px solid rgba(252,252,252,0.10); border-radius:16px; overflow:hidden;">
+        <div style="background:#202020; padding:36px 32px; display:flex; flex-direction:column; gap:12px;">
+          <span style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:44px; line-height:1; color:#ff6a3d;">01</span>
+          <span style="font-size:18px; font-weight:700; color:#fcfcfc;">צריבה בליבה</span>
+          <p style="font-size:15px; line-height:1.6; color:rgba(252,252,252,0.65); margin:0;">ההגנה נטמעת ברמת מערכת ההפעלה — לא אפליקציה שאפשר למחוק, לא הגדרה שאפשר לשנות.</p>
+        </div>
+        <div style="background:#202020; padding:36px 32px; display:flex; flex-direction:column; gap:12px;">
+          <span style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:44px; line-height:1; color:#ff6a3d;">02</span>
+          <span style="font-size:18px; font-weight:700; color:#fcfcfc;">אטומה לעקיפות</span>
+          <p style="font-size:15px; line-height:1.6; color:rgba(252,252,252,0.65); margin:0;">איפוס היצרן, החלפת סים או חיבור למחשב — ההגנה נשארת. אין דרך לעקוף אותה, גם לא לטכנאי.</p>
+        </div>
+        <div style="background:#202020; padding:36px 32px; display:flex; flex-direction:column; gap:12px;">
+          <span style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:44px; line-height:1; color:#ff6a3d;">03</span>
+          <span style="font-size:18px; font-weight:700; color:#fcfcfc;">בפיקוח מתמיד</span>
+          <p style="font-size:15px; line-height:1.6; color:rgba(252,252,252,0.65); margin:0;">ועדת הרבנים לענייני תקשורת מפקחת באופן ישיר על התכנים המאושרים — בכל מכשיר, בכל עדכון.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:center;">
+        <a href="Hadran Product.dc.html" style="background:#fcfcfc; color:#202020; font-size:16px; font-weight:600; padding:14px 34px; border-radius:9999px; display:inline-block;" style-hover="background:#ffffff; color:#202020;">איך זה עובד ←</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENCE / COMPARISON -->
+  <section id="difference" data-screen-label="ההבדל של הדרן" style="background:#f9f7f3; padding:112px 32px;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; flex-direction:column; gap:56px;">
+      <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px;">
+        <span style="border:1px solid rgba(234,40,4,0.35); color:#ea2804; border-radius:9999px; padding:8px 20px; font-size:14px; font-weight:700;">ההבדל של הדרן</span>
+        <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:60px; line-height:1.02; letter-spacing:-1.4px; margin:0;">הגנה אמיתית מתחילה בבסיס.<br>לא רק סינון — הגנה.</h2>
+        <p style="font-size:17px; line-height:1.6; color:#575757; margin:0; max-width:620px;">כאשר הביטחון הדיגיטלי של משפחתך עומד על הפרק, אל תתפשר על פחות מהטוב ביותר. השווה בעצמך:</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:stretch;">
+        <!-- HADRAN SIDE -->
+        <div style="background:#ffffff; border:1px solid rgba(234,40,4,0.25); border-radius:16px; padding:40px 36px; display:flex; flex-direction:column; gap:24px; box-shadow:0 16px 40px rgba(234,40,4,0.08); position:relative;">
+          <span style="position:absolute; top:-14px; right:32px; background:linear-gradient(135deg, #F19413 0%, #ea2804 90%); color:#ffffff; border-radius:9999px; padding:6px 18px; font-size:12px; font-weight:700;">הבחירה של 140,000+ משתמשים</span>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:52px; height:52px; border-radius:12px; background:#202020; display:flex; align-items:center; justify-content:center;">
+              <div style="width:26px; height:28px; background:#ea2804; -webkit-mask-image:url('uploads/icon.svg'); mask-image:url('uploads/icon.svg'); -webkit-mask-size:contain; mask-size:contain; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center;"></div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-size:20px; font-weight:700; color:#202020;">הדרן — הגנה צרובה בליבה</span>
+              <span style="font-size:13px; color:#575757;">ברמת החומרה ומערכת ההפעלה</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0; border-bottom:1px solid rgba(32,32,32,0.08);"><span style="color:#8aae24; font-weight:700; font-size:15px;">✓</span><span style="font-size:15px; line-height:1.5; color:#202020;">יציבות ללא תחרות — ההגנה היא חלק מהמערכת עצמה</span></div>
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0; border-bottom:1px solid rgba(32,32,32,0.08);"><span style="color:#8aae24; font-weight:700; font-size:15px;">✓</span><span style="font-size:15px; line-height:1.5; color:#202020;">ביצועים אופטימליים — אפס פגיעה בסוללה ובמהירות</span></div>
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0; border-bottom:1px solid rgba(32,32,32,0.08);"><span style="color:#8aae24; font-weight:700; font-size:15px;">✓</span><span style="font-size:15px; line-height:1.5; color:#202020;">בלתי ניתנת להסרה או עקיפה — גם לא לטכנאי</span></div>
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0;"><span style="color:#8aae24; font-weight:700; font-size:15px;">✓</span><span style="font-size:15px; line-height:1.5; color:#202020;">שורדת איפוס יצרן, החלפת סים ועדכוני מערכת</span></div>
+          </div>
+          <span style="margin-top:auto; align-self:flex-start; background:rgba(155,195,41,0.14); color:#6e8c1c; border-radius:9999px; padding:8px 18px; font-size:13px; font-weight:700;">שקט נפשי אמיתי</span>
+        </div>
+        <!-- SOFTWARE SIDE -->
+        <div style="background:#f3f0e8; border:1px dashed rgba(32,32,32,0.25); border-radius:16px; padding:40px 36px; display:flex; flex-direction:column; gap:24px;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:52px; height:52px; border-radius:12px; border:2px dashed rgba(32,32,32,0.3); display:flex; align-items:center; justify-content:center;">
+              <div style="width:20px; height:20px; border:2px solid rgba(32,32,32,0.35); border-radius:6px;"></div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-size:20px; font-weight:700; color:#575757;">פתרונות מבוססי תוכנה</span>
+              <span style="font-size:13px; color:#8d8d8d;">אפליקציה, VPN או סינון חיצוני</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0; border-bottom:1px solid rgba(32,32,32,0.08);"><span style="color:#ea2804; font-weight:700; font-size:15px;">✕</span><span style="font-size:15px; line-height:1.5; color:#575757;">פגיעה בביצועים ובסוללה</span></div>
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0; border-bottom:1px solid rgba(32,32,32,0.08);"><span style="color:#ea2804; font-weight:700; font-size:15px;">✕</span><span style="font-size:15px; line-height:1.5; color:#575757;">פוטנציאל לפרצות ודרכי עקיפה</span></div>
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0; border-bottom:1px solid rgba(32,32,32,0.08);"><span style="color:#ea2804; font-weight:700; font-size:15px;">✕</span><span style="font-size:15px; line-height:1.5; color:#575757;">תלות בעדכוני מערכת של צד שלישי</span></div>
+            <div style="display:flex; align-items:baseline; gap:12px; padding:13px 0;"><span style="color:#ea2804; font-weight:700; font-size:15px;">✕</span><span style="font-size:15px; line-height:1.5; color:#575757;">שכבת תוכנה חיצונית — שניתן להסיר</span></div>
+          </div>
+          <span style="margin-top:auto; align-self:flex-start; color:#8d8d8d; font-size:13px; font-weight:600;">סינון חיצוני בלבד</span>
+        </div>
+      </div>
+      <p style="font-size:15px; color:#575757; margin:0; text-align:center;">הדרן מספקת פתרון שורשי, עמוק ואמין יותר — <a href="#protection" style="font-weight:700;">כך זה עובד ←</a></p>
+    </div>
+  </section>
+
+  <!-- SAMSUNG MYTH -->
+  <section id="samsung-myth" data-screen-label="המיתוס של סמסונג" style="background:#f3f0e8; padding:104px 32px;">
+    <div style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.15fr 1fr; gap:72px; align-items:center;">
+      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:22px;">
+        <span style="border:1px solid rgba(32,32,32,0.2); color:#202020; border-radius:9999px; padding:8px 20px; font-size:14px; font-weight:700; background:#ffffff;">עובדות מול מיתוסים</span>
+        <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:52px; line-height:1.04; letter-spacing:-1.2px; margin:0;">האם רק פתרון אחד מאושר למכשירי סמסונג?<br><span style="color:#ea2804;">הגיע הזמן לדעת את העובדות.</span></h2>
+        <p style="font-size:16px; line-height:1.7; color:#3a3a3a; margin:0; max-width:560px;">בעבר, ייתכן שחברות מסוימות טענו לבלעדיות באישור סמסונג. כיום, הטכנולוגיה של הדרן עומדת בסטנדרטים הגבוהים ביותר ומספקת פתרון מאושר ויציב למכשירי סמסונג — ללא פשרות על כשרות וביצועים.</p>
+        <a href="Hadran Product.dc.html" style="background:#202020; color:#fcfcfc; font-size:15px; font-weight:600; padding:13px 28px; border-radius:9999px; display:inline-block;">למד עוד על שיתופי הפעולה הטכנולוגיים ←</a>
+      </div>
+      <div style="display:flex; justify-content:center; perspective:1200px;">
+        <div onClick="{{ toggleFlip }}" style="position:relative; width:100%; max-width:380px; height:420px; cursor:pointer; transform-style:preserve-3d; transition:transform 0.8s cubic-bezier(0.3,0.8,0.3,1); transform:rotateY({{ flipDeg }});">
+          <!-- FRONT -->
+          <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; background:#ffffff; border:1px solid rgba(32,32,32,0.12); border-radius:16px; box-shadow:0 16px 40px rgba(32,32,32,0.10); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:36px; text-align:center;">
+            <div style="width:110px; height:110px; border-radius:9999px; border:2px dashed rgba(234,40,4,0.4); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:56px; color:#ea2804;">?</span>
+            </div>
+            <span style="font-size:20px; font-weight:700; color:#202020;">"רק פתרון אחד מאושר לסמסונג"</span>
+            <span style="font-size:14px; color:#8d8d8d;">מיתוס נפוץ בשוק</span>
+            <span style="font-size:13px; font-weight:700; color:#ea2804;">לחצו לגילוי האמת ←</span>
+          </div>
+          <!-- BACK -->
+          <div style="position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; transform:rotateY(180deg); background:#202020; border-radius:16px; box-shadow:0 16px 40px rgba(32,32,32,0.18); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:36px; text-align:center;">
+            <img src="uploads/kashrut_stamp.svg" alt="חותמת ועדת הרבנים" style="width:96px; height:auto;">
+            <span style="font-size:20px; font-weight:700; color:#fcfcfc;">הדרן מאושרת ויציבה למכשירי Samsung</span>
+            <span style="font-size:14px; line-height:1.6; color:rgba(252,252,252,0.72);">בסטנדרטים הגבוהים ביותר, בפיקוח ועדת הרבנים — ללא פשרות על כשרות וביצועים.</span>
+            <span style="background:rgba(155,195,41,0.16); color:#8aae24; border-radius:9999px; padding:6px 16px; font-size:12px; font-weight:700;">עובדה ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE TEASER -->
+  <section data-screen-label="חנויות מכירה ושירות" style="background:#f3f0e8; padding:96px 32px;">
+    <div style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;">
+      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:24px;">
+        <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:56px; line-height:1.02; letter-spacing:-1.2px; margin:0;">הדרן איתכם בעשרות סניפים מצפון לדרום</h2>
+        <p style="font-size:17px; line-height:1.7; color:#3a3a3a; margin:0; max-width:540px;">בחרנו בקפידה רשת חנויות פרימיום וסוכנים מורשים ברחבי הארץ, המספקים שירות מקצועי, ליווי אישי ורכישה של כל מוצרי מערכת ההגנה של הדרן — כולל התקנה במקום. מצאו את הנקודה הקרובה אליכם, היכנסו — וצאו עם שקט נפשי דיגיטלי.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <span style="background:#ffffff; border:1px solid rgba(32,32,32,0.12); border-radius:9999px; padding:8px 16px; font-size:13px; font-weight:600; color:#202020;">מוקד שירות טלפוני מקצועי</span>
+          <span style="background:#ffffff; border:1px solid rgba(32,32,32,0.12); border-radius:9999px; padding:8px 16px; font-size:13px; font-weight:600; color:#202020;">מעבדות אקספרס — תיקון מסך עד שעתיים</span>
+          <span style="background:#ffffff; border:1px solid rgba(32,32,32,0.12); border-radius:9999px; padding:8px 16px; font-size:13px; font-weight:600; color:#202020;">אביזרים, שדרוגים ותיקונים</span>
+        </div>
+        <a href="Hadran Service.dc.html" style="background:#202020; color:#fcfcfc; font-size:16px; font-weight:600; padding:14px 32px; border-radius:9999px; display:inline-block;">איתור חנות קרובה אליך ←</a>
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <div style="width:100%; max-width:460px; aspect-ratio:1380/1433; -webkit-mask-image:url('uploads/icon.svg'); mask-image:url('uploads/icon.svg'); -webkit-mask-size:contain; mask-size:contain; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center;">
+          <img src="uploads/pasted-1783534534231-0.png" alt="שירות אישי בחנות הדרן" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section data-screen-label="מכשירים" style="background:#f9f7f3; padding:96px 32px;">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:48px;">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:64px; line-height:1.0; letter-spacing:-1.5px; margin:0;">מכשירים נתמכים</h2>
+          <p style="font-size:16px; color:#575757; margin:0; max-width:520px;">מערכת ההגנה של הדרן מותקנת על מגוון רחב של מכשירים. הרכישה — בחנויות המורשות בלבד.</p>
+        </div>
+        <a href="Hadran Product.dc.html" style="color:#202020; font-size:14px; font-weight:600; border:1px solid #202020; border-radius:9999px; padding:10px 20px; background:#ffffff; white-space:nowrap;">כל המכשירים הנתמכים ←</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+          <a href="Hadran Product.dc.html" style="background:#ffffff; border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:12px; color:#202020;" style-hover="box-shadow:0 8px 24px rgba(32,32,32,0.08);">
+            <div style="aspect-ratio:1; border-radius:10px; background:repeating-linear-gradient(45deg, #f3f0e8 0 12px, #eee9dd 12px 24px); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#8d8d8d;">{{ p.imgLabel }}</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <span style="font-size:16px; font-weight:600;">{{ p.name }}</span>
+              <span style="font-size:13px; color:#575757;">{{ p.desc }}</span>
+            </div>
+            <div style="display:flex; align-items:center; margin-top:auto;">
+              <span style="background:#f9f7f3; border:1px solid rgba(32,32,32,0.12); border-radius:9999px; padding:4px 10px; font-size:11px; color:#202020;">מאושר ועדת הרבנים</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section data-screen-label="הערכים של הדרן" style="background:#ffffff; border-top:1px solid rgba(32,32,32,0.12); border-bottom:1px solid rgba(32,32,32,0.12); padding:72px 32px;">
+    <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:44px;">
+      <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:40px; line-height:1; letter-spacing:-0.8px; margin:0; text-align:center;">הערכים של הדרן</h2>
+      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:0;">
+        <div style="display:flex; flex-direction:column; gap:10px; padding:0 28px; border-left:1px solid rgba(32,32,32,0.1);">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; color:#ea2804;">01</span>
+          <span style="font-size:17px; font-weight:700; line-height:1.35; color:#202020;">כפיפות<br>לדעת תורה</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px; padding:0 28px; border-left:1px solid rgba(32,32,32,0.1);">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; color:#ea2804;">02</span>
+          <span style="font-size:17px; font-weight:700; line-height:1.35; color:#202020;">הובלה בעליונות<br>טכנולוגית</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px; padding:0 28px; border-left:1px solid rgba(32,32,32,0.1);">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; color:#ea2804;">03</span>
+          <span style="font-size:17px; font-weight:700; line-height:1.35; color:#202020;">שירות מהיר,<br>מקיף ומקצועי</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px; padding:0 28px; border-left:1px solid rgba(32,32,32,0.1);">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; color:#ea2804;">04</span>
+          <span style="font-size:17px; font-weight:700; line-height:1.35; color:#202020;">מחירים אטרקטיביים<br>ומשתלמים</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px; padding:0 28px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; color:#ea2804;">05</span>
+          <span style="font-size:17px; font-weight:700; line-height:1.35; color:#202020;">חוויית משתמש<br>גבוהה ועדכנית</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" data-screen-label="עדויות" style="background:#f9f7f3; padding:32px 32px 112px;">
+    <div style="max-width:920px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:44px;">
+      <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px;">
+        <span style="border:1px solid rgba(234,40,4,0.35); color:#ea2804; border-radius:9999px; padding:8px 20px; font-size:14px; font-weight:700;">שקט נפשי דיגיטלי</span>
+        <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:56px; line-height:1.02; letter-spacing:-1.3px; margin:0;">מעל 140,000 משפחות כבר בחרו בשקט של הדרן</h2>
+      </div>
+      <div style="display:flex; align-items:center; gap:20px; width:100%;">
+        <button onClick="{{ prevT }}" aria-label="העדות הקודמת" style="width:48px; height:48px; border-radius:9999px; border:1px solid rgba(32,32,32,0.15); background:#ffffff; color:#202020; font-size:18px; cursor:pointer; flex-shrink:0;" style-hover="background:#f3f0e8;">›</button>
+        <div style="flex:1; background:#ffffff; border:1px solid rgba(32,32,32,0.1); border-radius:16px; padding:48px 52px; box-shadow:0 12px 32px rgba(32,32,32,0.07); display:flex; flex-direction:column; gap:28px; min-height:220px;">
+          <p style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:600; font-size:26px; line-height:1.4; color:#202020; margin:0;">"{{ tQuote }}"</p>
+          <div style="display:flex; align-items:center; gap:14px; margin-top:auto;">
+            <div style="width:48px; height:48px; border-radius:9999px; background:linear-gradient(135deg, #F19413 0%, #ea2804 90%); color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700;">{{ tInitial }}</div>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <span style="font-size:15px; font-weight:700; color:#202020;">{{ tName }}</span>
+              <span style="font-size:13px; color:#8d8d8d;">{{ tCity }}</span>
+            </div>
+          </div>
+        </div>
+        <button onClick="{{ nextT }}" aria-label="העדות הבאה" style="width:48px; height:48px; border-radius:9999px; border:1px solid rgba(32,32,32,0.15); background:#ffffff; color:#202020; font-size:18px; cursor:pointer; flex-shrink:0;" style-hover="background:#f3f0e8;">‹</button>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <sc-for list="{{ tDots }}" as="d" hint-placeholder-count="5">
+          <button onClick="{{ d.go }}" aria-label="{{ d.label }}" style="width:10px; height:10px; border-radius:9999px; border:none; padding:0; cursor:pointer; background:{{ d.color }};"></button>
+        </sc-for>
+      </div>
+      <p style="font-size:15px; color:#575757; margin:0; text-align:center;">הצטרפו לאלפי משפחות שנהנות מחיים דיגיטליים בטוחים, מוגנים וכשרים — ללא דאגות.</p>
+    </div>
+  </section>
+
+  <!-- LEAD FORM -->
+  <section data-screen-label="השארת פרטים" style="background:radial-gradient(120% 160% at 50% -30%, #F19413 0%, #ea2804 62%, #c01f00 100%); padding:104px 32px;">
+    <div style="max-width:860px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px;">
+      <span style="font-size:14px; font-weight:700; color:rgba(255,255,255,0.85);">כמה קל לעבור למערכת ההגנה שלנו</span>
+      <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:64px; line-height:1.0; letter-spacing:-1.5px; margin:0; color:#ffffff;">רוצים להנות מחיים דיגיטליים בטוחים?</h2>
+      <p style="font-size:18px; line-height:1.56; color:rgba(255,255,255,0.92); margin:0;">השאירו עכשיו פרטים וסוכן כשר סייל יחזור אליכם בהקדם</p>
+      <div style="display:flex; gap:10px; width:100%; max-width:760px; margin-top:12px; flex-wrap:wrap; justify-content:center;">
+        <input type="text" placeholder="שם" style="flex:1; min-width:160px; height:52px; padding:0 22px; border-radius:9999px; border:none; background:#ffffff; font-family:'Almoni Neue','Heebo',sans-serif; font-size:15px; color:#202020; outline:none; text-align:right;" style-focus="box-shadow:0 0 0 3px rgba(32,32,32,0.35);">
+        <input type="email" placeholder="אימייל" style="flex:1.2; min-width:180px; height:52px; padding:0 22px; border-radius:9999px; border:none; background:#ffffff; font-family:'Almoni Neue','Heebo',sans-serif; font-size:15px; color:#202020; outline:none; text-align:right;" style-focus="box-shadow:0 0 0 3px rgba(32,32,32,0.35);">
+        <input type="tel" placeholder="טלפון" style="flex:1; min-width:160px; height:52px; padding:0 22px; border-radius:9999px; border:none; background:#ffffff; font-family:'Almoni Neue','Heebo',sans-serif; font-size:15px; color:#202020; outline:none; text-align:right;" style-focus="box-shadow:0 0 0 3px rgba(32,32,32,0.35);">
+        <button style="height:52px; padding:0 34px; border-radius:9999px; border:none; background:#202020; color:#fcfcfc; font-family:'Almoni Neue','Heebo',sans-serif; font-size:16px; font-weight:600; cursor:pointer; white-space:nowrap;" style-hover="background:#000000;">לשיחה עם נציג</button>
+      </div>
+      <p style="font-size:11px; line-height:1.6; color:rgba(255,255,255,0.7); margin:16px 0 0; max-width:760px; text-align:right;">* השארת פרטייך מהווה את הסכמתך לכך שנציג הדרן ייצור עמך קשר באמצעות שיחה טלפונית/SMS, המידע ישמש את הדרן או מי מטעמה, לספק את השירות ולשפרו, לתפעול ומחקר וגם לשיווק (כולל מותאם אישית) אלא אם הודעת אחרת. הדרן רשאית לעשות שימוש במידע, והוא עשוי לעבור לגורמים נוספים כמפורט במדיניות הפרטיות, שם ניתן למצוא פירוט גם לגבי זכותך לעיון או לתיקון מידע. אין בדרך כלל חובה חוקית למסור את המידע אך בלעדיו לא נוכל לטפל בפנייתך או לספק לך השירות.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer data-screen-label="פוטר" style="background:#000000; color:#fcfcfc; padding:96px 32px 0; overflow:hidden; position:relative;">
+    <div style="position:absolute; bottom:-40%; left:50%; transform:translateX(-50%); width:80%; height:60%; background:radial-gradient(50% 50% at 50% 50%, rgba(234,40,4,0.22) 0%, rgba(234,40,4,0) 70%); pointer-events:none;"></div>
+    <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:72px; position:relative;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:48px; flex-wrap:wrap;">
+        <h2 style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:72px; line-height:0.98; letter-spacing:-1.8px; margin:0; color:#fcfcfc;">שקט דיגיטלי.<br><span style="color:#ff6a3d;">צרוב בליבה.</span></h2>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="Hadran Service.dc.html" style="background:linear-gradient(135deg, #F19413 0%, #ea2804 90%); color:#ffffff; font-size:15px; font-weight:600; padding:14px 30px; border-radius:9999px; display:inline-block;" style-hover="background:linear-gradient(135deg, #e0820a 0%, #c01f00 90%); color:#ffffff;">איתור חנות קרובה ←</a>
+          <a href="Hadran Product.dc.html" style="border:1px solid rgba(252,252,252,0.3); color:#fcfcfc; font-size:15px; font-weight:600; padding:14px 30px; border-radius:9999px; display:inline-block;" style-hover="background:rgba(252,252,252,0.1); color:#fcfcfc;">מכשירים נתמכים</a>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; align-items:start; border-top:1px solid rgba(252,252,252,0.14); padding-top:56px;">
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <img src="uploads/white_logo_1_1.svg" alt="הדרן" style="height:52px; width:auto; align-self:flex-start; filter:invert(1);">
+          <p style="font-size:14px; line-height:1.7; color:rgba(252,252,252,0.6); margin:0; max-width:300px;">טכנולוגיה בהכשר. מאז 2014.<br>הגנה צרובה בליבת המכשיר, בפיקוח ועדת הרבנים לענייני תקשורת.</p>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="uploads/kashrut_stamp.svg" alt="חותמת ועדת הרבנים" style="width:44px; height:auto; opacity:0.9;">
+            <span style="font-size:12px; line-height:1.5; color:rgba(252,252,252,0.5); max-width:180px;">באישור ועדת הרבנים לענייני תקשורת, בני ברק</span>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px; font-size:14px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:1px; color:rgba(252,252,252,0.4);">הפתרון</span>
+          <a href="Hadran Home.dc.html#protection" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">מערכת ההגנה</a>
+          <a href="Hadran Home.dc.html#difference" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">הדרן מול סינון חיצוני</a>
+          <a href="Hadran Product.dc.html" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">מכשירים נתמכים</a>
+          <a href="Hadran Magazine.dc.html" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">הדרן עלך — המגזין</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px; font-size:14px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:1px; color:rgba(252,252,252,0.4);">חנויות ושירות</span>
+          <a href="Hadran Service.dc.html" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">חנויות מכירה ושירות</a>
+          <a href="Hadran Service.dc.html" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">מעבדות אקספרס</a>
+          <a href="Hadran Service.dc.html" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">מוקד שירות טלפוני</a>
+          <a href="Hadran Service.dc.html" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">צור קשר</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px; font-size:14px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:1px; color:rgba(252,252,252,0.4);">כשרות</span>
+          <a href="Hadran Home.dc.html#kashrut" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">ועדת הרבנים</a>
+          <a href="Hadran Home.dc.html#samsung-myth" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">עובדות מול מיתוסים</a>
+          <a href="Hadran Home.dc.html#testimonials" style="color:rgba(252,252,252,0.72);" style-hover="color:#ff6a3d;">עדויות משפחות</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(252,252,252,0.14); padding-top:24px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; font-size:12px; color:rgba(252,252,252,0.5);">
+        <span>© הדרן 2026. כל הזכויות שמורות.</span>
+        <div style="display:flex; gap:24px;">
+          <a href="#" style="color:rgba(252,252,252,0.5);" style-hover="color:#fcfcfc;">מדיניות פרטיות</a>
+          <a href="#" style="color:rgba(252,252,252,0.5);" style-hover="color:#fcfcfc;">תנאי שימוש</a>
+          <a href="#" style="color:rgba(252,252,252,0.5);" style-hover="color:#fcfcfc;">נגישות</a>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;">hadran.net</span>
+      </div>
+    </div>
+    <div aria-hidden="true" style="position:relative; margin:8px auto -0.34em; max-width:1280px; text-align:center;">
+      <span style="font-family:'Almoni Tzar','Noto Sans Hebrew',sans-serif; font-weight:900; font-size:clamp(180px, 26vw, 380px); line-height:1; letter-spacing:-6px; display:block; background:linear-gradient(180deg, rgba(252,252,252,0.2) 0%, rgba(252,252,252,0.02) 85%); -webkit-background-clip:text; background-clip:text; color:transparent; user-select:none; white-space:nowrap;">הדרן</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;userCount&quot;: { &quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 140000, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;הירו&quot; },
+  &quot;testimonialAutoplay&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;עדויות&quot; },
+  &quot;accentStyle&quot;: { &quot;editor&quot;: null, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  state = { count: 0, menuOpen: false, flipped: false, tIndex: 0 };
+
+  testimonials = [
+    { quote: 'אחרי שנים של אפליקציות סינון שהילדים מצאו דרך לעקוף — סוף סוף שקט אמיתי. אין מה לעקוף.', name: 'משפחת גולדשטיין', city: 'בני ברק' },
+    { quote: 'המכשיר עובד חלק, הסוללה מחזיקה, ואני יודעת בדיוק מה יש בו. זה השקט שחיפשנו.', name: 'רחל פ.', city: 'ירושלים' },
+    { quote: 'רכשנו לכל העובדים במשרד. התקנה במקום, שירות מדהים, ואפס תקלות כבר שנה.', name: 'יעקב ל.', city: 'מודיעין עילית' },
+    { quote: 'הרב שלנו המליץ, ומאז כל המשפחה עברה. ההבדל מסינון רגיל — שמיים וארץ.', name: 'משפחת ברוורמן', city: 'אשדוד' },
+    { quote: 'כטכנאי לשעבר ניסיתי הכול. זו המערכת היחידה שבאמת אי אפשר לעקוף.', name: 'שמעון ד.', city: 'חיפה' }
+  ];
+
+  componentDidMount() {
+    const target = this.props.userCount ?? 140000;
+    const dur = 1600;
+    const steps = 40;
+    let i = 0;
+    this._timer = setInterval(() => {
+      i++;
+      const p = Math.min(1, i / steps);
+      const eased = 1 - Math.pow(1 - p, 3);
+      this.setState({ count: Math.round(target * eased) });
+      if (p >= 1) clearInterval(this._timer);
+    }, dur / steps);
+    // guarantee final value even if the interval is throttled/killed
+    this._final = setTimeout(() => this.setState({ count: target }), dur + 400);
+    if (this.props.testimonialAutoplay ?? true) {
+      this._tTimer = setInterval(() => {
+        this.setState(s => ({ tIndex: (s.tIndex + 1) % this.testimonials.length }));
+      }, 5000);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._timer);
+    clearTimeout(this._final);
+    clearInterval(this._tTimer);
+  }
+
+  goT(i) {
+    const n = this.testimonials.length;
+    this.setState({ tIndex: ((i % n) + n) % n });
+    clearInterval(this._tTimer);
+  }
+
+  renderVals() {
+    return {
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      closeMenuSoon: () => this.setState({ menuOpen: false }),
+      counterText: this.state.count.toLocaleString('en-US'),
+      flipDeg: this.state.flipped ? '180deg' : '0deg',
+      toggleFlip: () => this.setState(s => ({ flipped: !s.flipped })),
+      tQuote: this.testimonials[this.state.tIndex].quote,
+      tName: this.testimonials[this.state.tIndex].name,
+      tCity: this.testimonials[this.state.tIndex].city,
+      tInitial: this.testimonials[this.state.tIndex].name.charAt(0),
+      nextT: () => this.goT(this.state.tIndex + 1),
+      prevT: () => this.goT(this.state.tIndex - 1),
+      tDots: this.testimonials.map((t, i) => ({
+        label: 'עדות ' + (i + 1),
+        color: i === this.state.tIndex ? '#ea2804' : 'rgba(32,32,32,0.18)',
+        go: () => this.goT(i)
+      })),
+      products: [
+        { sku: 'SM-A556E/H', name: 'Samsung Galaxy A55', desc: 'המצלמה הטובה בקטגוריה, סוללה ליומיים', price: '₪1,890', imgLabel: 'תמונת מכשיר · Galaxy A55' },
+        { sku: 'GA-04963/H', name: 'Google Pixel 8a', desc: 'חוויית אנדרואיד נקייה, עדכונים ל-7 שנים', price: '₪2,190', imgLabel: 'תמונת מכשיר · Pixel 8a' },
+        { sku: 'RN13-PRO/H', name: 'Xiaomi Redmi Note 13', desc: 'התמורה הכי גבוהה למחיר', price: '₪1,190', imgLabel: 'תמונת מכשיר · Redmi Note 13' },
+        { sku: 'CPH-2619/H', name: 'OnePlus Nord 4', desc: 'ביצועים חזקים, טעינה מהירה במיוחד', price: '₪1,690', imgLabel: 'תמונת מכשיר · Nord 4' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
