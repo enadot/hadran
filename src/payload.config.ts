@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { he } from '@payloadcms/translations/languages/he'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -29,6 +30,12 @@ export default buildConfig({
     },
     meta: {
       titleSuffix: '— הדרן',
+    },
+    components: {
+      graphics: {
+        Logo: '/components/admin/Logo#Logo',
+        Icon: '/components/admin/Icon#Icon',
+      },
     },
   },
   collections: [
@@ -74,7 +81,9 @@ export default buildConfig({
     defaultLocale: 'he',
     fallback: true,
   },
+  // עברית בלבד בממשק האדמין — Payload עובר אוטומטית ל-RTL בשפות ימין-לשמאל
   i18n: {
+    supportedLanguages: { he },
     fallbackLanguage: 'he',
   },
 })

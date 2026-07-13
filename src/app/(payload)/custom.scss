@@ -1,0 +1,39 @@
+/* עיצוב ממשק האדמין — הדרן */
+/* גופן עברי (אלמוני) + רקע בגווני המותג. נטען אחרי ברירות המחדל של Payload. */
+
+@font-face {
+  font-family: 'Almoni Neue';
+  src: url('/fonts/almoni-neue-regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Almoni Neue';
+  src: url('/fonts/almoni-neue-medium.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Almoni Neue';
+  src: url('/fonts/almoni-neue-bold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --font-body: 'Almoni Neue', system-ui, -apple-system, 'Segoe UI', 'Heebo', sans-serif;
+}
+
+/* גוון קנבס חם (כמו באתר) במקום אפור ניטרלי — במצב בהיר בלבד */
+html[data-theme='light'] {
+  --theme-bg: #f9f7f3;
+  --theme-input-bg: #ffffff;
+}
+
+/* מסך כניסה — ריווח סביב הלוגו */
+.login__brand,
+.graphic-logo {
+  margin-block-end: 1.5rem;
+}
