@@ -57,6 +57,21 @@ export function Hero({ userCount = 140000 }: { userCount?: number }) {
           <p className="m-0 max-w-[540px] text-[17px] leading-relaxed text-body sm:text-[19px]">
             היחידה עם מערכת הגנה צרובה בליבת המכשיר — לביטחון אמיתי ושקט דיגיטלי.
           </p>
+          <Link
+            href="/devices"
+            className="group flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-glow/25 bg-white/80 py-3.5 pe-5 ps-3.5 shadow-[0_10px_30px_rgba(234,40,4,0.10)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-glow/50 hover:shadow-[0_14px_36px_rgba(234,40,4,0.18)]"
+          >
+            <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-bl from-brand-orange to-accent px-3 py-1 text-[13px] font-black text-white">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-white [animation:hadranBlink_1.6s_ease-in-out_infinite]" />
+              חדש!
+            </span>
+            <span className="text-[15px] font-semibold leading-snug text-ink sm:text-[16px]">
+              סדרות שיאומי האהובות עכשיו במכשירים מוכנים צרובי הדרן!
+            </span>
+            <span className="text-[15px] font-bold text-accent transition group-hover:text-accent-deep sm:text-[16px]">
+              למשלוח עד הבית ‹
+            </span>
+          </Link>
           <Link href="/devices" className="btn-brand px-9 py-4 text-[17px]">
             קחו אותי להדרן שלי ←
           </Link>
