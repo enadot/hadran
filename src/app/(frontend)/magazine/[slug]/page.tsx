@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { draftMode } from 'next/headers'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -8,18 +9,24 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { RichText } from '@/components/RichText'
 import { CATEGORY_LABELS } from '@/components/magazine/ArticleCard'
 import { NewsletterBand } from '@/components/sections/NewsletterBand'
+import { LivePreviewRefresh } from '@/components/LivePreviewRefresh'
 
 export const revalidate = 300
 
 type Props = { params: Promise<{ slug: string }> }
 
 async function getArticle(slug: string) {
+  // ב-Draft Mode (Live Preview באדמין) נטענת הגרסה האחרונה כולל טיוטות
+  const { isEnabled: draft } = await draftMode()
   const payload = await getPayloadClient()
   const res = await payload.find({
     collection: 'articles',
-    where: { and: [{ slug: { equals: slug } }, { _status: { equals: 'published' } }] },
+    where: draft
+      ? { slug: { equals: slug } }
+      : { and: [{ slug: { equals: slug } }, { _status: { equals: 'published' } }] },
     limit: 1,
     depth: 2,
+    draft,
   })
   return res.docs[0] || null
 }
@@ -57,6 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params
+  const { isEnabled: draft } = await draftMode()
   const article = await getArticle(slug).catch(() => null)
   if (!article) notFound()
 
@@ -64,6 +72,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
+      {draft && <LivePreviewRefresh />}
       <JsonLd
         data={[
           {

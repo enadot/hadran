@@ -20,7 +20,9 @@ export const Articles: CollectionConfig = {
     read: () => true,
   },
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: { interval: 375 },
+    },
   },
   hooks: {
     afterChange: [

@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
+import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import { getPayloadClient } from '@/lib/payload'
 import { breadcrumbSchema } from '@/lib/schema'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { RichText } from '@/components/RichText'
+import { LivePreviewRefresh } from '@/components/LivePreviewRefresh'
 
 export const revalidate = 300
 
@@ -15,8 +17,10 @@ const RESERVED = new Set(['kashrut', 'stores', 'devices', 'magazine', 'user-guid
 
 async function getPage(slug: string) {
   if (RESERVED.has(slug)) return null
+  // ב-Draft Mode (Live Preview באדמין) נטענת הגרסה האחרונה כולל טיוטות
+  const { isEnabled: draft } = await draftMode()
   const payload = await getPayloadClient()
-  const res = await payload.find({ collection: 'pages', where: { slug: { equals: slug } }, limit: 1 })
+  const res = await payload.find({ collection: 'pages', where: { slug: { equals: slug } }, limit: 1, draft })
   return res.docs[0] || null
 }
 
@@ -43,11 +47,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GenericPage({ params }: Props) {
   const { slug } = await params
+  const { isEnabled: draft } = await draftMode()
   const page = await getPage(slug).catch(() => null)
   if (!page) notFound()
 
   return (
     <>
+      {draft && <LivePreviewRefresh />}
       <JsonLd data={breadcrumbSchema([{ name: 'ראשי', path: '/' }, { name: page.title, path: `/${page.slug}` }])} />
       <header className="px-5 pb-8 pt-16 sm:px-8 sm:pt-24">
         <div className="mx-auto flex max-w-[760px] flex-col gap-5">

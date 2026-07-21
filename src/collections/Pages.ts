@@ -20,7 +20,9 @@ export const Pages: CollectionConfig = {
     read: () => true,
   },
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: { interval: 375 },
+    },
   },
   hooks: {
     afterChange: [

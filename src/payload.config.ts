@@ -37,6 +37,21 @@ export default buildConfig({
         Icon: '/components/admin/Icon#Icon',
       },
     },
+    // עורך ויזואלי — תצוגה חיה של העמוד בתוך האדמין תוך כדי עריכה
+    livePreview: {
+      url: ({ data, collectionConfig }) => {
+        const base = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+        const slug = typeof data?.slug === 'string' ? data.slug : ''
+        const path = collectionConfig?.slug === 'articles' ? `/magazine/${slug}` : `/${slug}`
+        return `${base}/api/preview?path=${encodeURIComponent(path)}`
+      },
+      collections: ['pages', 'articles'],
+      breakpoints: [
+        { label: 'מובייל', name: 'mobile', width: 390, height: 844 },
+        { label: 'טאבלט', name: 'tablet', width: 834, height: 1194 },
+        { label: 'דסקטופ', name: 'desktop', width: 1440, height: 900 },
+      ],
+    },
   },
   collections: [
     Pages,
